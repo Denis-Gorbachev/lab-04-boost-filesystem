@@ -21,24 +21,25 @@ HunterGate(
 )
 
 # TODO: rename project and delete this comment
-project(template VERSION 0.1.0)
+project(lab4 VERSION 0.1.0)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
-# new versions of cmake contain gtest search files
-# commented out to increase the build speed.
-# hunter_add_package(GTest)
+hunter_add_package(Boost COMPONENTS filesystem)
+hunter_add_package(GTest)
+find_package(Boost CONFIG REQUIRED filesystem)
 find_package(GTest CONFIG REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC
-  # enum your files and delete this comment
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/example.cpp
-)
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Iteration.cpp
+        sources/AccountInfo.cpp include/AccountInfo.hpp
+        demo/main.cpp)
 
 add_executable(demo
   ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
-)
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Iteration.cpp
+        sources/AccountInfo.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -49,8 +50,7 @@ target_link_libraries(demo ${PROJECT_NAME})
 
 if(BUILD_TESTS)
   add_executable(tests
-    # TODO: enum your files and delete this comment
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/example.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
   )
   target_link_libraries(tests ${PROJECT_NAME} GTest::gtest_main)
   enable_testing()
@@ -88,6 +88,7 @@ install(TARGETS ${PROJECT_NAME} demo
   INCLUDES DESTINATION include
 )
 
+target_link_libraries(${PROJECT_NAME} Boost::filesystem)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
 
 install(EXPORT "${PROJECT_NAME}-targets"
