@@ -1,7 +1,7 @@
 // Copyright 2021 Denis <denis.gorbachev2002@yandex.ru>
 
-#ifndef TEMPLATE_ITERATION_HPP
-#define TEMPLATE_ITERATION_HPP
+#ifndef TEMPLATE_ITERATION_HPP_
+#define TEMPLATE_ITERATION_HPP_
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <vector>
