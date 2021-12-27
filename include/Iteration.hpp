@@ -1,7 +1,7 @@
 // Copyright 2021 Denis <denis.gorbachev2002@yandex.ru>
 
-#ifndef TEMPLATE_ITERATION_HPP_
-#define TEMPLATE_ITERATION_HPP_
+#ifndef INCLUDE_ITERATION_HPP_
+#define INCLUDE_ITERATION_HPP_
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <vector>
@@ -28,4 +28,4 @@ void switch_path(const boost::filesystem::path& p,
 
 void print_files(const std::vector<File>& files);
 void print_acc_inf(const std::vector<AccountInfo>& accs);
-#endif  // TEMPLATE_ITERATION_HPP
+#endif  // INCLUDE_ITERATION_HPP_
